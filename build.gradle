@@ -1,0 +1,16 @@
+buildscript {
+	repositories {
+		flatDir {dirs "/opt/java/gradle1.2/lib/plugins"}
+	}
+	dependencies {
+		classpath 'domnaindrivenarchitecture:ddaCommonBuild:0.5'
+	}
+}
+
+apply plugin: "ddaCommonBuild"
+apply from: "dependencies.gradle"
+
+ant.importBuild 'build.xml'
+
+group="politaktiv"
+sourceCompatibility = 1.6

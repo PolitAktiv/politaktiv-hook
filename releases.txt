@@ -1,0 +1,64 @@
+ReleaseNotes:
+
+9.7 - 13.06.2013
+----------------
+* Teilprojekt -> Themenbereich
+* fixed umlaute
+
+9.6 - 10.05.2013
+----------------
+* added <div>s for adding login to top right of portal
+* repaired math captcha
+* removed -umlaute- from the german language file
+
+9.5 - 26.03.2013
+----------------
+* added editable area to login (see PA-345)
+
+9.4 - 25.03.2013
+----------------
+* added editable area to registration (see PA-345)
+* added "required" to field registration.emailAddress (see PA-343)
+
+9.3 - 31.01.2013 
+----------------------------
+* fixed community-portlet bugs (see PA-314)
+
+9.2 - 19.07.2012 
+----------------------------
+* removed password output after registration 
+
+(1 - initial)
+-----------------------------
+
+0.9.1 - 25.11.2011
+-----------------------------
+* bugfix: 2 . Vorname bei Registrierung ausblenden create_account.jsp verschoben nach .../login/
+
+0.9 - 19.11.2011
+-----------------------------
+* 2. Vorname bei Registrierung ausblenden
+
+0.8 - 11.11.2011
+-----------------------------
+* [PA-81] - Internationalisierung für Login-Dlg-Meldung
+
+
+0.7 - 10.10.2011
+-----------------------------
+* login-und-konto-hook integriert
+
+0.6 - 10.10.2011
+-----------------------------
+* TermsOfUseHook integriert
+* MathCaptchaHook integriert
+* MathCapcha Konfiguration nach portal-ext.props verschoben 
+
+0.5 - 22.07.2011
+-----------------------------
+* Deaktivierte Communities für Admins sichtbar machen
+* PolitAktiv kann nicht mehr verlassen werden
+
+0.4 - 19.07.2011
+-----------------------------
+* Communities Suche angepasst
