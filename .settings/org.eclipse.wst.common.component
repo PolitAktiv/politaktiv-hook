@@ -2,6 +2,7 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="politaktiv-hook">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/docroot/WEB-INF/src"/>
         <property name="java-output-path" value="/politaktiv-hook/docroot/WEB-INF/classes"/>
         <property name="context-root" value="politaktiv-hook"/>
     </wb-module>
