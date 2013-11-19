@@ -13,4 +13,4 @@ apply from: "dependencies.gradle"
 ant.importBuild 'build.xml'
 
 group="politaktiv"
-sourceCompatibility = 1.6
+targetCompatibility = 1.6
