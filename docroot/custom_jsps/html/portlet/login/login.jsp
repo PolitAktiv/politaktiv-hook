@@ -129,7 +129,7 @@
 					<h1> <liferay-ui:message key="welcome-to-login" /></h1>
 				</div>
 				<div class="politaktiv-hook-login-if-first-visit">
-				<liferay-ui:message key="if-this-is-your-first-visit-please-register-first-by" />
+				<!-- <liferay-ui:message key="if-this-is-your-first-visit-please-register-first-by" /> -->
 					<a href="<%= PortalUtil.getCreateAccountURL(request, themeDisplay) %>">
 						<liferay-ui:message key="creating-an-account" />
 					</a>
