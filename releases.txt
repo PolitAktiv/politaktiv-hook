@@ -1,5 +1,9 @@
 ReleaseNotes:
 
+9.8 - 19.11.2013
+----------------
+* changed login wording
+
 9.7 - 13.06.2013
 ----------------
 * Teilprojekt -> Themenbereich
