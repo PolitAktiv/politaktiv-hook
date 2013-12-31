@@ -31,14 +31,6 @@ for (int i = 0; i < choices.size(); i++) {
 
 	int choiceVotes = choice.getVotesCount();
 
-	String className = "portlet-section-body results-row";
-	String classHoverName = "portlet-section-body-hover results-row hover";
-
-	if (MathUtil.isEven(i)) {
-		className = "portlet-section-alternate results-row alt";
-		classHoverName = "portlet-section-alternate-hover results-row alt hover";
-	}
-
 	double votesPercent = 0.0;
 
 	if (totalVotes > 0) {
@@ -51,26 +43,31 @@ for (int i = 0; i < choices.size(); i++) {
 		votesPixelWidth = 100;
 	}
 
-	int zustimmung = (int) Math.floor(100.0*votesPercent);
-	int votesPercentWidth = (int)Math.floor(votesPercent * votesPixelWidth);
+	int votesPercentWidth = (int)Math.floor(votesPercent * 100);
 %>
 
-<tr class="<%= className %>">
-	<td class="frage">
-		<%= choice.getDescription(locale) %>
-	</td>
-	<c:if test="<%= votesPercentWidth == 0 %>">
-	<td class="balken" title="<%= LanguageUtil.get(pageContext, "no-approval") %>"></td>
-	</c:if>
-	<c:if test="<%= votesPercentWidth > 0 %>">
-	<td class="balken" title="<%= zustimmung %>% <%= LanguageUtil.get(pageContext, "approval") %>">
-		<span class="alpha" style="width: <%= zustimmung %>%"></span><span
-			class="beta" style="width: <%= 100-zustimmung %>%"></span>
-		</td>
-	</c:if>
-
-	<td class="ergebnis">
+<tbody class="table-data">
+<tr>
+	<td class="table-cell">
 		<%= percentFormat.format(votesPercent) %>
+	</td>
+	<td class="table-cell">
+		<%= numberFormat.format(choiceVotes) %>
+	</td>
+
+	<td class="table-cell">
+		<div class="progress-bar progress-bar-horizontal <%= votesPercentWidth == 0 ? "no-progress" : StringPool.BLANK %>" style="height: 1.4em; width: <%= votesPixelWidth %>px;">
+			<div class="progress-bar-content">
+				<div class="progress-bar-status" style="height: 100%; top: auto; width: <%= votesPercentWidth %>%; "></div>
+			</div>
+		</div>
+	</td>
+
+	<td class="table-cell">
+		<strong><%= choice.getName() %>.</strong>
+	</td>
+	<td class="table-cell">
+		<%= choice.getDescription(locale) %>
 	</td>
 </tr>
 
@@ -78,14 +75,13 @@ for (int i = 0; i < choices.size(); i++) {
 }
 %>
 
+</tbody>
 </table>
 
-<div class="legende">
-	<%= numberFormat.format(totalVotes) %> <liferay-ui:message key="votes" />
-	(<span class="alpha" title="<%= LanguageUtil.get(pageContext, "green-bar") %>"
-		style="width:1.4ex; height:1.4ex; display: inline-block; 
-		vertical-align: text-bottom; margin: 0.4ex"></span>:
-	<liferay-ui:message key="approval" />)
+<br />
+
+<div>
+	<strong><liferay-ui:message key="total-votes" />:</strong> <%= numberFormat.format(totalVotes) %>
 </div>
 
 <c:if test="<%= portletName.equals(PortletKeys.POLLS) %>">
@@ -123,6 +119,7 @@ for (int i = 0; i < choices.size(); i++) {
 		portletURL.setParameter("struts_action", "/polls/view_question");
 		portletURL.setParameter("redirect", redirect);
 		portletURL.setParameter("questionId", String.valueOf(question.getQuestionId()));
+		portletURL.setParameter("viewResults", Boolean.TRUE.toString());
 
 		List<String> headerNames = new ArrayList<String>();
 
@@ -168,11 +165,13 @@ for (int i = 0; i < choices.size(); i++) {
 
 			PollsChoice choice = vote.getChoice();
 
+			choice = choice.toEscapedModel();
+
 			row.addText(choice.getName() + ". " + choice.getDescription(locale));
 
 			// Vote date
 
-			row.addText(dateFormatDateTime.format(vote.getVoteDate()));
+			row.addDate(vote.getVoteDate());
 
 			// Add result row
 
